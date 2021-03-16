@@ -3,7 +3,7 @@
 1. Installation and prerequisites.
     The first thing to do is to clone the repository:
 
-    '''sh 
+    '''
     $ git clone https://github.com/XaNtisS0/Camping-IO.git
     '''
 
