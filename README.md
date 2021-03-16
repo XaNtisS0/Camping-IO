@@ -31,9 +31,3 @@ Then install the dependencies:
 ```
 (env)$ pip install -r requirements.txt
 ```
-Once 'pip' has finished downloading the dependecies:
-
-```
-(env)$ cd server
-(env)$ python manage.py runserver
-```
