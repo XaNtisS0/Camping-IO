@@ -4,7 +4,9 @@
     The first thing to do is to clone the repository:
 
 '''
+
 $git clone https://github.com/XaNtisS0/Camping-IO.git
+
 '''
 
 Create a virtualenv environment to install dependencies in:
