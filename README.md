@@ -1,5 +1,5 @@
 
-## Quick start 🚀🚀🚀
+# Quick start 🚀🚀🚀
 
 1. Installation and prerequisites.
  
@@ -15,7 +15,8 @@ Create a virtualenv environment to install dependencies in:
 $ virtualenv env
 ```
 
-Active it :
+## Active it :
+
 On Linux/Mac
 
 ```
