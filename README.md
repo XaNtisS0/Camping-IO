@@ -3,15 +3,15 @@
 1. Installation and prerequisites.
     The first thing to do is to clone the repository:
 
-    '''
-    $ git clone https://github.com/XaNtisS0/Camping-IO.git
-    '''
+'''
+$git clone https://github.com/XaNtisS0/Camping-IO.git
+'''
 
-    Create a virtualenv environment to install dependencies in:
+Create a virtualenv environment to install dependencies in:
 
-    '''sh 
-    $ virtualenv env
-    '''
+'''sh 
+$ virtualenv env
+'''
 
     Active it :
 
