@@ -12,7 +12,7 @@ $git clone https://github.com/XaNtisS0/Camping-IO.git
 Create a virtualenv environment to install dependencies in:
 
 ```
-$ virtualenv env
+$ virtualenv .venv
 ```
 
 ## Active it :
