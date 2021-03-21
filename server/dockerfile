@@ -6,6 +6,8 @@ WORKDIR /usr/src/back
 
 COPY requirements.txt /usr/src/back
 
+ENV CHOKIDAR_USEPOLLING=true
+
 RUN pip install -r requirements.txt
 
 COPY . /usr/src/back
