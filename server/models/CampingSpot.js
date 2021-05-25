@@ -7,7 +7,7 @@ const CampingSpotSchema = new mongoose.Schema({
     required: true,
   },
   name: {
-    type: Number,
+    type: String,
     required: [true, "Name is required"],
   },
   guestsLimit: {
