@@ -21,7 +21,7 @@ const CampingSpotSchema = new mongoose.Schema({
   picture: {
     data: Buffer,
     contentType: String,
-  }
+  },
 });
 
-module.exports = mongoose.model("CampingSpot", CampingSpotSchema);
+module.exports = mongoose.model("CampingSpots", CampingSpotSchema);

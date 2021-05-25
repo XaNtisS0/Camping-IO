@@ -29,4 +29,4 @@ const CampingSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("Camping", CampingSchema);
+module.exports = mongoose.model("Campings", CampingSchema);
