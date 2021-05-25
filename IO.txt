@@ -1,0 +1,25 @@
+Czy architekci muszą zrobić jakąś część projektu?
+
+Projekt zarządzanie campingiem
+- camping
+ - nadmorski
+ - górski
+ - nadjeziorny
+- miejsce campingowe
+ - VIP
+ - normalne
+- użytkownik
+ - właściciel
+ - klient
+ 
+Wymagania funkcjonalne:
+użytkownik niezarejestrowany 
+- może przeglądać 
+- może się zarejestrować
+użytkownik zarejestrowany
+- może się zalogować
+- zarezerwoać miejsce campingowe (ilość miejsc, czas)
+właściciel campingu
+- może dodać camping (np. górski, nad jeziorem, nad morzem)
+- może dodać miejsca campingowe (ile max osób, udogodnienia)
+- swoje miejsca campingowe (ile wolnych-zajęty)
