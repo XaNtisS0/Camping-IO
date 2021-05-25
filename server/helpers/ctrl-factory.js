@@ -51,7 +51,7 @@ const factoryGetAllEndpoint = (model) => async (_, res) => {
         });
       }
 
-      return res.status(200).json({ success: false, data: objects });
+      return res.status(200).json({ success: true, data: objects });
     });
   } catch (error) {
     return res.status(400).json({ success: false, error });
@@ -129,7 +129,12 @@ const factoryDeleteEndpoint = (model, options) => async (req, res) => {
   try {
     await model.deleteOne({ _id: req.params.id }, options, (error) => {
       if (error) return res.status(400).json({ success: false, error });
-      return res.status(204).json({ success: false, error });
+      return res
+        .status(204)
+        .json({
+          success: true,
+          message: "You succesfully deleted this instance.",
+        });
     });
   } catch (error) {
     return res.status(400).json({ success: false, error });
