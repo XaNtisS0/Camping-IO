@@ -24,4 +24,4 @@ const CampingSpotSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("CampingSpots", CampingSpotSchema);
+module.exports = mongoose.model("Campingspots", CampingSpotSchema);
