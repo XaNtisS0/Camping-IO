@@ -1,6 +1,10 @@
 const mongoose = require("mongoose");
 
 const CampingSchema = new mongoose.Schema({
+  campingSpotId: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+  },
   name: {
     type: String,
     required: true,
@@ -19,7 +23,7 @@ const CampingSchema = new mongoose.Schema({
     required: [true, "Type is required"],
   },
   owner: {
-    type: mongoose.Schema.Types.ObjectId, 
+    type: mongoose.Schema.Types.ObjectId,
     ref: "User",
     required: [true, "Type is required"],
   },
