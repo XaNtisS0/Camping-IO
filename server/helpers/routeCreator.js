@@ -1,6 +1,6 @@
 const express = require("express");
 
-export const createRouterForActions = (actions) => {
+const createRouterForActions = (actions) => {
   const values = Object.values(actions);
   const router = express.Router();
   for (const { method, url, action } of values) {
@@ -8,3 +8,5 @@ export const createRouterForActions = (actions) => {
   }
   return router;
 };
+
+module.exports = createRouterForActions;

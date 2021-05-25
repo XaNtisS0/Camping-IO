@@ -14,7 +14,7 @@ const UserSchema = new mongoose.Schema({
     required: [true, "Password is required"],
   },
   phone: {
-    type: mongoose.SchemaTypes.Phone,
+    type: String,
     required: [true, "Phone is required"],
   },
   isOwner: {

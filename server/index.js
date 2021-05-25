@@ -1,6 +1,11 @@
 const express = require("express");
 const cors = require("cors");
 
+const campingRouter = require("./routes/camping-router");
+const campingSpotRouter = require("./routes/campingSpot-router");
+const reservationRouter = require("./routes/reservation-router");
+const userRouter = require("./routes/user-router");
+
 const initMongoConnection = require("./db/connection");
 
 const app = express();
@@ -13,6 +18,11 @@ app.use(express.json());
 app.get("/", (_, res) => {
   res.send("I'm alive");
 });
+
+app.use("/api/users", userRouter);
+app.use("/api/campings", campingRouter);
+app.use("/api/campingSpots", campingSpotRouter);
+app.use("/api/reservations", reservationRouter);
 
 const runApp = async (app) => {
   await initMongoConnection();
