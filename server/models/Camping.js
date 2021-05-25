@@ -19,6 +19,7 @@ const CampingSchema = new mongoose.Schema({
   },
   type: {
     type: String,
+    enum: ['nadmorski', 'górski', 'nadjeziorny'],
     required: [true, "Type is required"],
   },
   owner: {
