@@ -20,7 +20,6 @@ const Landing = () => {
     <>
       <CTA />
       <CampingSpots />
-      <div>Footer</div>
     </>
   );
 };

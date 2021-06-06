@@ -1,5 +1,6 @@
 import React from "react";
 import Navbar from "./Navbar";
+import Footer from "./Footer";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
@@ -19,6 +20,7 @@ const Wrapper = ({ children }) => {
     <main className={classes.main}>
       <Navbar />
       {children}
+      <Footer />
     </main>
   );
 };
