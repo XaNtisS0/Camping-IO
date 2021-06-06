@@ -1,10 +1,13 @@
 import React from "react";
 import Routes from "./components/Route/Routes";
+import Wrapper from "./components/shared/Wrapper";
 
 function App() {
   return (
     <>
-      <Routes />
+      <Wrapper>
+        <Routes />
+      </Wrapper>
     </>
   );
 }
