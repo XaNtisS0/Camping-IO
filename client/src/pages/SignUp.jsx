@@ -1,15 +1,10 @@
 import React, { useRef, useState } from "react";
-import Avatar from "@material-ui/core/Avatar";
-import Button from "@material-ui/core/Button";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import TextField from "@material-ui/core/TextField";
-import { Alert } from "@material-ui/lab";
 import { Link } from "react-router-dom";
-import Grid from "@material-ui/core/Grid";
+
+import { Avatar, Button, CssBaseline, TextField, Grid, Typography, makeStyles, Container } from "@material-ui/core";
+import { Alert } from "@material-ui/lab";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
+
 import { useAuth } from "../components/context/AuthContext";
 
 const useStyles = makeStyles((theme) => ({
@@ -39,8 +34,9 @@ export default function SignUp() {
   const passwordRef = useRef();
 
   const [error, setError] = useState("");
+  const [status, setStatus] = useState(false);
   const [loading, setLoading] = useState(false);
-  const { signup, currentUser } = useAuth();
+  const { signup } = useAuth();
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -48,7 +44,10 @@ export default function SignUp() {
     try {
       setLoading(true);
       await signup(emailRef.current.value, passwordRef.current.value);
+      setStatus(true);
+      setError("Successfully registered.");
     } catch {
+      setStatus(false);
       setError("Failed to create an account");
     }
 
@@ -65,12 +64,20 @@ export default function SignUp() {
         <Typography component="h1" variant="h5">
           Zarejestruj się
         </Typography>
-        {error && (
+        {status ? (
           <Grid item xs={12}>
-            <Alert variant="filled" severity="error" width="100%">
+            <Alert variant="filled" severity="success">
               {error}
             </Alert>
           </Grid>
+        ) : (
+          error && (
+            <Grid item xs={12}>
+              <Alert variant="filled" severity="error">
+                {error}
+              </Alert>
+            </Grid>
+          )
         )}
         <form className={classes.form} noValidate onSubmit={handleSubmit}>
           <Grid container spacing={2}>
