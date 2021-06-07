@@ -40,9 +40,9 @@ const Navbar = () => {
         <Link to="/">
           <Button className={classes.button}>Campings</Button>
         </Link>
-        <Link to="/register">
+        <Link to="/login">
           <Button className={classes.button} variant="contained" color="primary">
-            Register
+            Login
           </Button>
         </Link>
       </div>
