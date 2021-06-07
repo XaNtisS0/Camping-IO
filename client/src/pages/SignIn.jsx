@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
+import { Alert } from "@material-ui/lab";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
+import { useAuth } from "../components/context/AuthContext";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -22,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
-    width: "100%", // Fix IE 11 issue.
+    width: "100%",
     marginTop: theme.spacing(1),
   },
   submit: {
@@ -31,7 +33,28 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SignIn() {
+  const emailRef = useRef();
+  const passwordRef = useRef();
   const classes = useStyles();
+  const history = useHistory();
+
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const { login } = useAuth();
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    try {
+      setLoading(true);
+      await login(emailRef.current.value, passwordRef.current.value);
+      history.push("/");
+    } catch {
+      setError("Failed to sign in");
+    }
+
+    setLoading(false);
+  }
 
   return (
     <Container component="main" maxWidth="xs">
@@ -43,7 +66,14 @@ export default function SignIn() {
         <Typography component="h1" variant="h5">
           Zaloguj sie
         </Typography>
-        <form className={classes.form} noValidate>
+        {error && (
+          <Grid item xs={12}>
+            <Alert variant="filled" severity="error" width="100%">
+              {error}
+            </Alert>
+          </Grid>
+        )}
+        <form className={classes.form} noValidate onSubmit={handleSubmit}>
           <TextField
             variant="outlined"
             margin="normal"
@@ -52,8 +82,8 @@ export default function SignIn() {
             id="email"
             label="Email"
             name="email"
-            autoComplete="email"
             autoFocus
+            inputRef={emailRef}
           />
           <TextField
             variant="outlined"
@@ -64,17 +94,12 @@ export default function SignIn() {
             label="Hasło"
             type="password"
             id="password"
-            autoComplete="current-password"
+            inputRef={passwordRef}
           />
           <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
             Zaloguj się
           </Button>
           <Grid container>
-            <Grid item xs>
-              <Link href="#" variant="body2">
-                Zapomniałes hasła?
-              </Link>
-            </Grid>
             <Grid item>
               <Link to="/register">Nie masz konta? Zarejestruj się!</Link>
             </Grid>
