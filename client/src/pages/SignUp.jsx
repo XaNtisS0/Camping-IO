@@ -5,7 +5,7 @@ import { Avatar, Button, CssBaseline, TextField, Grid, Typography, makeStyles, C
 import { Alert } from "@material-ui/lab";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 
-import { useAuth } from "../components/context/AuthContext";
+import { useAuth } from "../components/auth/context/AuthContext";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
