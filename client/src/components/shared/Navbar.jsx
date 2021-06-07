@@ -29,7 +29,7 @@ const Navbar = () => {
   const classes = useStyles();
 
   return (
-    <Container className={classes.navbar} component="navbar">
+    <Container className={classes.navbar} component="nav">
       <Link to="/">
         <img className={classes.logo} src={logo}></img>
       </Link>
@@ -37,8 +37,8 @@ const Navbar = () => {
         <Link to="/">
           <Button className={classes.button}>Home</Button>
         </Link>
-        <Link>
-          <Button className={classes.button}>Camping</Button>
+        <Link to="/">
+          <Button className={classes.button}>Campings</Button>
         </Link>
         <Link to="/register">
           <Button className={classes.button} variant="contained" color="primary">
