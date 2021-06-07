@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
+import { Alert } from "@material-ui/lab";
 import { Link } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
+import { useAuth } from "../components/context/AuthContext";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -22,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
-    width: "100%", // Fix IE 11 issue.
+    width: "100%",
     marginTop: theme.spacing(3),
   },
   submit: {
@@ -32,6 +34,26 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignUp() {
   const classes = useStyles();
+
+  const emailRef = useRef();
+  const passwordRef = useRef();
+
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const { signup, currentUser } = useAuth();
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    try {
+      setLoading(true);
+      await signup(emailRef.current.value, passwordRef.current.value);
+    } catch {
+      setError("Failed to create an account");
+    }
+
+    setLoading(false);
+  }
 
   return (
     <Container component="main" maxWidth="xs">
@@ -43,9 +65,16 @@ export default function SignUp() {
         <Typography component="h1" variant="h5">
           Zarejestruj się
         </Typography>
-        <form className={classes.form} noValidate>
+        {error && (
+          <Grid item xs={12}>
+            <Alert variant="filled" severity="error" width="100%">
+              {error}
+            </Alert>
+          </Grid>
+        )}
+        <form className={classes.form} noValidate onSubmit={handleSubmit}>
           <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
+            {/* <Grid item xs={12} sm={6}>
               <TextField
                 autoComplete="fname"
                 name="firstName"
@@ -67,7 +96,7 @@ export default function SignUp() {
                 name="lastName"
                 autoComplete="lname"
               />
-            </Grid>
+            </Grid> */}
             <Grid item xs={12}>
               <TextField
                 variant="outlined"
@@ -77,6 +106,7 @@ export default function SignUp() {
                 label="Email"
                 name="email"
                 autoComplete="email"
+                inputRef={emailRef}
               />
             </Grid>
             <Grid item xs={12}>
@@ -88,11 +118,18 @@ export default function SignUp() {
                 label="Hasło"
                 type="password"
                 id="password"
-                autoComplete="current-password"
+                inputRef={passwordRef}
               />
             </Grid>
           </Grid>
-          <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+            disabled={loading}
+          >
             Zarejestruj się
           </Button>
           <Grid container justify="flex-end">
