@@ -1,5 +1,6 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
+import Campings from "../../pages/Campings";
 import Landing from "../../pages/Landing";
 import Login from "../../pages/SignIn";
 import Register from "../../pages/SignUp";
@@ -17,6 +18,9 @@ const Routes = () => (
       </Route>
       <Route path="/register">
         <Register />
+      </Route>
+      <Route path="/campings">
+        <Campings />
       </Route>
     </Switch>
   </AuthProvider>

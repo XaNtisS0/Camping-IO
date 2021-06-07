@@ -1,10 +1,8 @@
 import React, { useRef, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-
 import { Avatar, Button, CssBaseline, TextField, Grid, Typography, makeStyles, Container } from "@material-ui/core";
 import { Alert } from "@material-ui/lab";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-
 import { useAuth } from "../components/auth/context/AuthContext";
 
 const useStyles = makeStyles((theme) => ({

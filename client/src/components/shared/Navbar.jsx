@@ -37,7 +37,7 @@ const Navbar = () => {
         <Link to="/">
           <Button className={classes.button}>Home</Button>
         </Link>
-        <Link to="/">
+        <Link to="/campings">
           <Button className={classes.button}>Campings</Button>
         </Link>
         <Link to="/login">

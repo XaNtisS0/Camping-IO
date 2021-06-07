@@ -25,7 +25,7 @@ const Landing = () => {
   return (
     <>
       <CTA />
-      {isLoaded ? <CampingSpots campingSpots={campingSpots.slice(0, 4)} /> : <CircularProgress />}
+      {<CampingSpots campingSpots={campingSpots.slice(0, 4)} isLoading={isLoaded} />}
     </>
   );
 };

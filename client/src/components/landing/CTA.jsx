@@ -3,6 +3,7 @@ import { Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import logo from "../../images/logo.svg";
 import Container from "@material-ui/core/Container";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -32,9 +33,11 @@ const CTA = () => {
       <div className={classes.ctaText}>
         <h3 className={classes.smallText}>DESIGN INSPIRATION</h3>
         <h2 className={classes.paragraph}>Add your camping to make it more manageable.</h2>
-        <Button variant="contained" color="primary">
-          Register now
-        </Button>
+        <Link to="/register">
+          <Button variant="contained" color="primary">
+            Register now
+          </Button>
+        </Link>
       </div>
       <img className={classes.image} src={logo}></img>
     </Container>

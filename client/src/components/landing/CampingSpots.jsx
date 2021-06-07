@@ -1,6 +1,7 @@
 import React from "react";
-import { Container, Grid, Card, CardMedia, CardContent, Typography, Button, CardActions } from "@material-ui/core";
+import { Container, Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import CampingSpot from "../camping/CampingSpot";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -20,35 +21,20 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const CampingSpots = ({ campingSpots }) => {
+const CampingSpots = ({ campingSpots, isLoading }) => {
   const classes = useStyles();
-
-  const cards = [1, 2, 3, 4];
 
   return (
     <Container className={classes.container}>
       <h1 className={classes.header}>The best place to store all Your camping spots</h1>
       <Container className={classes.cardGrid}>
-        <Grid container spacing={3}>
-          {campingSpots.map((campingSpot) => (
-            <Grid item key={campingSpot._id} xs={12} sm={6} md={3}>
-              <Card className={classes.campingSpot}>
-                <CardContent className={classes.cardContent}>
-                  <Typography gutterBottom variant="h5" component="h2">
-                    {campingSpot.name}
-                  </Typography>
-                  <Typography>Max guests: {campingSpot.guestsLimit}</Typography>
-                  <Typography>Price: {campingSpot.price}</Typography>
-                </CardContent>
-                <CardActions>
-                  <Button variant="contained" size="small" color="primary">
-                    Reserve now
-                  </Button>
-                </CardActions>
-              </Card>
-            </Grid>
-          ))}
-        </Grid>
+        {isLoading && (
+          <Grid container spacing={3}>
+            {campingSpots.map((campingSpot) => (
+              <CampingSpot campingSpot={campingSpot} key={campingSpot._id} />
+            ))}
+          </Grid>
+        )}
       </Container>
     </Container>
   );
