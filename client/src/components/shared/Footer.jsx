@@ -24,7 +24,7 @@ function Copyright() {
 
 const Footer = () => {
   return (
-    <Box mt={8} mb={4}>
+    <Box pt={4} mb={4}>
       <Copyright />
     </Box>
   );
