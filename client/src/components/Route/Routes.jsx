@@ -3,7 +3,9 @@ import { Switch, Route } from "react-router-dom";
 import Landing from "../../pages/Landing";
 import Login from "../../pages/SignIn";
 import Register from "../../pages/SignUp";
-import { AuthProvider } from "../context/AuthContext";
+import { AuthProvider } from "../auth/context/AuthContext";
+import PrivateRoute from "./PrivateRoute";
+
 const Routes = () => (
   <AuthProvider>
     <Switch>
