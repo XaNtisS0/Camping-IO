@@ -19,9 +19,10 @@ const Routes = () => (
       <Route path="/register">
         <Register />
       </Route>
-      <Route path="/campings">
-        <Campings />
+      <Route path="/camping">
+        <Register />
       </Route>
+      <PrivateRoute path="/campings" component={Campings} />
     </Switch>
   </AuthProvider>
 );

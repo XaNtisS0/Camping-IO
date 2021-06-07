@@ -1,7 +1,19 @@
 import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
-import { Avatar, Button, CssBaseline, TextField, Grid, Typography, makeStyles, Container } from "@material-ui/core";
+import {
+  Avatar,
+  Button,
+  CssBaseline,
+  TextField,
+  Grid,
+  Typography,
+  makeStyles,
+  FormControlLabel,
+  Container,
+  Switch,
+} from "@material-ui/core";
 import { Alert } from "@material-ui/lab";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 
@@ -32,11 +44,31 @@ export default function SignUp() {
 
   const emailRef = useRef();
   const passwordRef = useRef();
+  const displayNameRef = useRef();
+  const phoneRef = useRef();
 
   const [error, setError] = useState("");
   const [status, setStatus] = useState(false);
+  const [isOwnerState, setIsOwnerState] = useState(false);
   const [loading, setLoading] = useState(false);
   const { signup } = useAuth();
+
+  const register = () => {
+    axios
+      .post("http://localhost:5000/api/users", {
+        displayName: displayNameRef.current.value,
+        email: emailRef.current.value,
+        password: passwordRef.current.value,
+        phone: phoneRef.current.value,
+        isOwner: isOwnerState,
+      })
+      .then((res) => console.log(res))
+      .catch((error) => console.log(error));
+  };
+
+  const toggleChecked = () => {
+    setIsOwnerState((prev) => !prev);
+  };
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -44,11 +76,12 @@ export default function SignUp() {
     try {
       setLoading(true);
       await signup(emailRef.current.value, passwordRef.current.value);
+      await register();
       setStatus(true);
       setError("Successfully registered.");
     } catch {
       setStatus(false);
-      setError("Failed to create an account");
+      setError(error, "Failed to create an account");
     }
 
     setLoading(false);
@@ -81,29 +114,28 @@ export default function SignUp() {
         )}
         <form className={classes.form} noValidate onSubmit={handleSubmit}>
           <Grid container spacing={2}>
-            {/* <Grid item xs={12} sm={6}>
+            <Grid item xs={12}>
               <TextField
                 autoComplete="fname"
-                name="firstName"
+                name="displayName"
                 variant="outlined"
                 required
                 fullWidth
                 id="firstName"
                 label="Imie"
                 autoFocus
+                inputRef={displayNameRef}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="lastName"
-                label="Nazwisko"
-                name="lastName"
-                autoComplete="lname"
+              <FormControlLabel
+                control={<Switch color="primary" checked={isOwnerState} onChange={toggleChecked} />}
+                label="Is Owner?"
               />
-            </Grid> */}
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField variant="outlined" required id="phone" label="Phone" name="phone" inputRef={phoneRef} />
+            </Grid>
             <Grid item xs={12}>
               <TextField
                 variant="outlined"

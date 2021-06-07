@@ -41,7 +41,7 @@ export default function SignIn() {
     try {
       setLoading(true);
       await login(emailRef.current.value, passwordRef.current.value);
-      history.push("/");
+      history.push("/campings");
     } catch {
       setError("Failed to sign in");
     }
