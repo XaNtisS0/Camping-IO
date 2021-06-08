@@ -4,6 +4,8 @@ import Campings from "../../pages/Campings";
 import Landing from "../../pages/Landing";
 import Login from "../../pages/SignIn";
 import Register from "../../pages/SignUp";
+import CampingForm from "../../pages/CampingForm";
+import CampingSpot from "../../pages/CampingSpotForm";
 import { AuthProvider } from "../auth/context/AuthContext";
 import PrivateRoute from "./PrivateRoute";
 
@@ -22,7 +24,9 @@ const Routes = () => (
       <Route path="/camping">
         <Register />
       </Route>
-      <PrivateRoute path="/campings" component={Campings} />
+      <PrivateRoute path="/campings" exact component={Campings} />
+      <PrivateRoute path="/campings/form" component={CampingForm} />
+      <PrivateRoute path="/campingspot/form" component={CampingSpot} />
     </Switch>
   </AuthProvider>
 );
