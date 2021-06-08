@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import logo from "../../images/logo.svg";
 import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
+import { useAuth } from "../auth/context/AuthContext";
 
 const useStyles = makeStyles((theme) => ({
   navbar: {
@@ -26,6 +27,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Navbar = () => {
+  const { currentUser } = useAuth();
   const classes = useStyles();
 
   return (
@@ -40,11 +42,19 @@ const Navbar = () => {
         <Link to="/campings">
           <Button className={classes.button}>Campings</Button>
         </Link>
-        <Link to="/login">
-          <Button className={classes.button} variant="contained" color="primary">
-            Login
-          </Button>
-        </Link>
+        {currentUser ? (
+          <Link to="/login">
+            <Button className={classes.button} variant="contained" color="primary">
+              Logout
+            </Button>
+          </Link>
+        ) : (
+          <Link to="/login">
+            <Button className={classes.button} variant="contained" color="primary">
+              Login
+            </Button>
+          </Link>
+        )}
       </div>
     </Container>
   );

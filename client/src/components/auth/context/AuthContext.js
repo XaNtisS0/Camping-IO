@@ -1,14 +1,15 @@
 import React, { useContext, useState, useEffect } from "react";
 import { auth } from "../firebase/FirebaseConfig";
+import axios from "axios";
 
-const AuthContext = React.createContext();
+export const AuthContext = React.createContext();
 
 export function useAuth() {
   return useContext(AuthContext);
 }
 
 export function AuthProvider({ children }) {
-  const [currentUser, setCurrentUser] = useState();
+  const [currentUser, setCurrentUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
   function signup(email, password) {
@@ -20,19 +21,12 @@ export function AuthProvider({ children }) {
   }
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      fetch("http://localhost:5000/api/users")
-        .then((res) => res.json())
-        .then(
-          (result) => {
-            setCurrentUser(result.data.filter((resUser) => resUser.email === user.email)[0]);
-            setLoading(false);
-          },
-          (error) => {
-            console.log(error);
-          },
-        );
-      // setCurrentUser(user);
+    const unsubscribe = auth.onAuthStateChanged(async (user) => {
+      const response = await axios.get("http://localhost:5000/api/users");
+      const result = response.data;
+      const data = result.data;
+      setCurrentUser(data.filter((dataUser) => user.email === dataUser.email)[0]);
+      setLoading(false);
     });
 
     return unsubscribe;
