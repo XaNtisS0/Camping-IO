@@ -6,13 +6,13 @@ import { useAuth } from "../auth/context/AuthContext";
 
 const useStyles = makeStyles((theme) => ({
   container: {
-    margin: "5rem auto",
+    margin: "1rem auto",
   },
   header: {
     textAlign: "center",
   },
   cardGrid: {
-    paddingTop: theme.spacing(8),
+    paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(8),
   },
   campingSpot: {
