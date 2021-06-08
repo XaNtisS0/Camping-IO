@@ -24,8 +24,6 @@ const useStyles = makeStyles((theme) => ({
 const Camping = ({ camping }) => {
   const classes = useStyles();
 
-  console.log(camping.campingSpots);
-
   return (
     <Container className={classes.container}>
       <h1 className={classes.header}>{camping.name}</h1>
