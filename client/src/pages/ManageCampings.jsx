@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-import { Button, CssBaseline, TextField, Grid, Typography, makeStyles, Container } from "@material-ui/core";
+import { Button, makeStyles, Container } from "@material-ui/core";
 import Camping from "../components/mycamping/MyCamping";
 import { useAuth } from "../components/auth/context/AuthContext";
 
@@ -61,6 +61,9 @@ const ManageCampings = () => {
             {console.log(filteredCamping._id)}
           </Link>
         ))}
+        <Button variant="contained" color="primary" href="/campings/form/camping">
+          Add new camping
+        </Button>
       </Container>
     </>
   );
