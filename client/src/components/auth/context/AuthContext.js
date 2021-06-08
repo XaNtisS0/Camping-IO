@@ -21,8 +21,18 @@ export function AuthProvider({ children }) {
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
-      setCurrentUser(user);
-      setLoading(false);
+      fetch("http://localhost:5000/api/users")
+        .then((res) => res.json())
+        .then(
+          (result) => {
+            setCurrentUser(result.data.filter((resUser) => resUser.email === user.email)[0]);
+            setLoading(false);
+          },
+          (error) => {
+            console.log(error);
+          },
+        );
+      // setCurrentUser(user);
     });
 
     return unsubscribe;
