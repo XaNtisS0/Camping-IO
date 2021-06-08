@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const CampingSpot = ({ campingSpot }) => {
+const CampingSpot = ({ campingSpot, isOwner }) => {
   const classes = useStyles();
 
   return (
@@ -24,9 +24,15 @@ const CampingSpot = ({ campingSpot }) => {
           <Typography>Price: {campingSpot.price}</Typography>
         </CardContent>
         <CardActions>
-          <Button variant="contained" size="small" color="primary">
-            Reserve now
-          </Button>
+          {isOwner ? (
+            <Button variant="contained" size="small" color="primary">
+              Delete
+            </Button>
+          ) : (
+            <Button variant="contained" size="small" color="primary">
+              Reserve now
+            </Button>
+          )}
         </CardActions>
       </Card>
     </Grid>

@@ -2,6 +2,7 @@ import React from "react";
 import { Container, Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import CampingSpot from "./CampingSpot";
+import { useAuth } from "../auth/context/AuthContext";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -23,6 +24,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Camping = ({ camping }) => {
   const classes = useStyles();
+  const { currentUser } = useAuth();
 
   return (
     <Container className={classes.container}>
@@ -30,7 +32,13 @@ const Camping = ({ camping }) => {
       <Container className={classes.cardGrid}>
         <Grid container spacing={3}>
           {camping.campingSpots &&
-            camping.campingSpots.map((campingSpot) => <CampingSpot campingSpot={campingSpot} key={campingSpot._id} />)}
+            camping.campingSpots.map((campingSpot) => (
+              <CampingSpot
+                isOwner={campingSpot.owner === currentUser._id}
+                campingSpot={campingSpot}
+                key={campingSpot._id}
+              />
+            ))}
         </Grid>
       </Container>
     </Container>

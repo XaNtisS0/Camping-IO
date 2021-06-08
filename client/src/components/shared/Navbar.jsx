@@ -54,11 +54,18 @@ const Navbar = () => {
           <Button className={classes.button}>Campings</Button>
         </Link>
         {currentUser ? (
-          <Link to="">
-            <Button className={classes.button} variant="contained" color="primary" onClick={handleLogout}>
-              Logout
-            </Button>
-          </Link>
+          <>
+            {currentUser.isOwner && (
+              <Link to="/mycampings">
+                <Button className={classes.button}>My Camps</Button>
+              </Link>
+            )}
+            <Link to="">
+              <Button className={classes.button} variant="contained" color="primary" onClick={handleLogout}>
+                Logout
+              </Button>
+            </Link>
+          </>
         ) : (
           <Link to="/login">
             <Button className={classes.button} variant="contained" color="primary">
