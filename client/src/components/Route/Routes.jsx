@@ -7,6 +7,7 @@ import Register from "../../pages/SignUp";
 import CampingForm from "../../pages/CampingForm";
 import ManageCampings from "../../pages/ManageCampings";
 import CampingSpot from "../../pages/CampingSpotForm";
+import Reservation from "../../pages/Reservation";
 
 import PrivateRoute from "./PrivateRoute";
 
@@ -21,10 +22,13 @@ const Routes = () => (
     <Route path="/register">
       <Register />
     </Route>
-    <PrivateRoute path="/campings" exact component={Campings} />
+    <Route exact path="/campings">
+      <Campings />
+    </Route>
     <PrivateRoute path="/campings/form" component={CampingForm} />
     <PrivateRoute path="/campingspot/form" component={CampingSpot} />
     <PrivateRoute path="/mycampings" component={ManageCampings} />
+    <PrivateRoute path="/reservation/:id" component={Reservation} />
   </Switch>
 );
 
