@@ -3,7 +3,7 @@ import logo from "../../images/logo.svg";
 import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useAuth } from "../auth/context/AuthContext";
 
 const useStyles = makeStyles((theme) => ({
@@ -29,6 +29,17 @@ const useStyles = makeStyles((theme) => ({
 const Navbar = () => {
   const { currentUser } = useAuth();
   const classes = useStyles();
+  const { logout } = useAuth();
+  const history = useHistory();
+
+  async function handleLogout() {
+    try {
+      await logout();
+      history.push("/");
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return (
     <Container className={classes.navbar} component="nav">
@@ -43,8 +54,8 @@ const Navbar = () => {
           <Button className={classes.button}>Campings</Button>
         </Link>
         {currentUser ? (
-          <Link to="/login">
-            <Button className={classes.button} variant="contained" color="primary">
+          <Link to="">
+            <Button className={classes.button} variant="contained" color="primary" onClick={handleLogout}>
               Logout
             </Button>
           </Link>
