@@ -1,16 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { Link, useLocation, useParams } from "react-router-dom";
-
-import { Button, CssBaseline, TextField, Grid, Typography, makeStyles, Container } from "@material-ui/core";
-import Camping from "../components/camping/Camping";
-import { useAuth } from "../components/auth/context/AuthContext";
-import CampingSpots from "../components/landing/CampingSpots";
+import { useParams } from "react-router-dom";
+import CampingSpots from "../components/camping/CampingSpot";
+import { Button, makeStyles, Container } from "@material-ui/core";
 
 const ManageCampingSpot = () => {
   const [campingsSpot, setCampingsSpot] = useState([]);
+  const [campings, setCampings] = useState([]);
   const [filteredCampingsSpot, setfilteredCampingsSpot] = useState([]);
   const { campingID } = useParams();
-  console.log(campingID);
 
   useEffect(() => {
     fetch("http://localhost:5000/api/campingspots")
@@ -25,9 +22,39 @@ const ManageCampingSpot = () => {
       );
   }, []);
 
+  useEffect(() => {
+    fetch("http://localhost:5000/api/campings")
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          setCampings(result.data);
+        },
+        (error) => {
+          console.log(error);
+        },
+      );
+  }, []);
+
+  useEffect(() => {
+    const filtered = filteredCampingsSpot.filter((filteredCampingsSpot) => {
+      console.log(filteredCampingsSpot.camping);
+      console.log(campings._id);
+      return filteredCampingsSpot.camping === campingID;
+    });
+    setfilteredCampingsSpot(campings);
+    console.log(filtered);
+  }, []);
+
   return (
     <>
-      <h1>Hey</h1>
+      <Container omponent="main" maxWidth="xs">
+        {filteredCampingsSpot.map((campingSpot) => {
+          <CampingSpots campingSpot={campingSpot} key={campingSpot._id} />;
+        })}
+        <Button variant="contained" color="primary" href="/campings/form/campingspot">
+          Add new camping spot
+        </Button>
+      </Container>
     </>
   );
 };

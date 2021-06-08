@@ -5,6 +5,7 @@ import Landing from "../../pages/Landing";
 import Login from "../../pages/SignIn";
 import Register from "../../pages/SignUp";
 import CampingForm from "../../pages/CampingForm";
+import CampingSpotForm from "../../pages/CampingSpotForm";
 import ManageCampings from "../../pages/ManageCampings";
 import ManageCampingSpot from "../../pages/ManageCampingSpot";
 import CampingSpot from "../../pages/CampingSpotForm";
@@ -26,8 +27,8 @@ const Routes = () => (
     <Route exact path="/campings">
       <Campings />
     </Route>
-    <PrivateRoute path="/campings/form" component={CampingForm} />
-    <PrivateRoute path="/campingspot/form" component={CampingSpot} />
+    <PrivateRoute path="/campings/form/camping" component={CampingForm} />
+    <PrivateRoute path="/campings/form/campingspot" component={CampingSpotForm} />
     <PrivateRoute path="/reservation/:id" component={Reservation} />
     <PrivateRoute exact path="/mycampings/" component={ManageCampings} />
     <PrivateRoute path="/mycampings/:campingID" component={ManageCampingSpot} />
