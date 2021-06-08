@@ -39,13 +39,7 @@ const Campings = () => {
     }
   }, [campingSpots, campings]);
 
-  return (
-    <>
-      {campings.map((camping) => (
-        <Camping camping={camping} key={camping._id} />
-      ))}
-    </>
-  );
+  return <>{campings && campings.map((camping) => <Camping camping={camping} key={camping._id} />)}</>;
 };
 
 export default Campings;
