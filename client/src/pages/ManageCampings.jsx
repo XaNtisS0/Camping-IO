@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 import { Button, CssBaseline, TextField, Grid, Typography, makeStyles, Container } from "@material-ui/core";
-import Camping from "../components/camping/Camping";
+import Camping from "../components/mycamping/MyCamping";
 import { useAuth } from "../components/auth/context/AuthContext";
 
 const useStyles = makeStyles((theme) => ({
@@ -55,7 +56,10 @@ const ManageCampings = () => {
     <>
       <Container omponent="main" maxWidth="xs">
         {filteredCampings.map((filteredCamping) => (
-          <Camping camping={filteredCamping} key={filteredCamping._id} />
+          <Link to={`/mycampings/${filteredCamping._id}`}>
+            <Camping camping={filteredCamping} key={filteredCamping._id} />
+            {console.log(filteredCamping._id)}
+          </Link>
         ))}
       </Container>
     </>
