@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import { Button, CssBaseline, TextField, Grid, Typography, makeStyles, Container } from "@material-ui/core";
+import Camping from "../components/camping/Camping";
+import { useAuth } from "../components/auth/context/AuthContext";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -24,15 +26,39 @@ const useStyles = makeStyles((theme) => ({
 
 const ManageCampings = () => {
   const classes = useStyles();
+  const [campings, setCampings] = useState([]);
+  const [filteredCampings, setfilteredCampings] = useState([]);
+  const { currentUser } = useAuth();
+
+  useEffect(() => {
+    fetch("http://localhost:5000/api/campings")
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          setCampings(result.data);
+        },
+        (error) => {
+          console.log(error);
+        },
+      );
+  }, []);
+
+  useEffect(() => {
+    const filtered = campings.filter((camping) => {
+      return camping.owner === currentUser._id;
+    });
+    setfilteredCampings(filtered);
+    console.log(filteredCampings);
+  }, [campings]);
+
   return (
-    <Container component="main" maxWidth="xs">
-      <CssBaseline />
-      <div className={classes.paper}>
-        <Typography component="h1" variant="h5">
-          Add camping spot
-        </Typography>
-      </div>
-    </Container>
+    <>
+      <Container omponent="main" maxWidth="xs">
+        {filteredCampings.map((filteredCamping) => (
+          <Camping camping={filteredCamping} key={filteredCamping._id} />
+        ))}
+      </Container>
+    </>
   );
 };
 
