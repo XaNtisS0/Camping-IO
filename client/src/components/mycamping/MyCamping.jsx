@@ -11,14 +11,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const MyCamping = () => {
+const MyCamping = ({ camping }) => {
   const classes = useStyles();
 
   return (
     <Container className={classes.container}>
       <h1 className={classes.header}>{camping.name}</h1>
-      <h1 className={classes.header}>{camping.name}</h1>
-      <h1 className={classes.header}>{camping.name}</h1>
+      <h3 className={classes.header}>Address: {camping.address}</h3>
+      <h3 className={classes.header}>Camping spot limit: {camping.campingSpotLimit}</h3>
+      <h3 className={classes.header}>Type: {camping.type}</h3>
     </Container>
   );
 };
