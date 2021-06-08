@@ -34,7 +34,7 @@ const Camping = ({ camping }) => {
           {camping.campingSpots &&
             camping.campingSpots.map((campingSpot) => (
               <CampingSpot
-                isOwner={campingSpot.owner === currentUser._id}
+                isOwner={currentUser && campingSpot.owner === currentUser._id}
                 campingSpot={campingSpot}
                 key={campingSpot._id}
               />
