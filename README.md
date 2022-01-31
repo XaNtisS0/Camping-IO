@@ -1,34 +1,39 @@
+# Camping IO
 
-# Quick start 🚀🚀🚀
+## Data Types
+- Camping
+  - name: string
+  - address: string
+  - campingSpotLimit: number
+  - type: enum
+  - owner: User
+- Camping spot
+  - camping: Camping
+  - name: string
+  - guestsLimit: number
+  - price: number
+  - picture: string
+- User
+  - displayName: string
+  - email: string
+  - password: string
+  - phone: string
+  - isOwner: string
+- Reservation
+  - campingSpot: CampingSpot
+  - startDate: Date
+  - endDate: Date
+  - isVip: bool
+  - guests: number
 
-1. Installation and prerequisites.
- 
-The first thing to do is to clone the repository:
-
-```
-$git clone https://github.com/XaNtisS0/Camping-IO.git
-```
-
-Create a virtualenv environment to install dependencies in:
-
-```
-$ virtualenv .venv
-```
-
-## Active it :
-
-On Linux/Mac
-
-```
-source env/bin/activate
-```
-On Windows
-
-```
-.\env\Scripts\activate
-```
-Then install the dependencies:
-
-```
-(env)$ pip install -r requirements.txt
-```
+## Requirements
+- unregistered user: 
+  - can see camping spots with campings and prices 
+  - can register
+- registered user:
+  - can login
+  - reserve camping spot
+- camping owner
+  - add camping
+  - add camping spoty
+  - check reservations for every campign
