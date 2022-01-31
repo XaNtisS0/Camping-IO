@@ -1,5 +1,7 @@
 # Camping IO
-
+You can strart app if you have [docker](https://www.docker.com/) installed.
+Using:
+### `docker compose up --build`
 ## Data Types
 - Camping
   - name: string
